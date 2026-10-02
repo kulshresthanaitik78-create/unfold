@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unfold — Digital Surprises</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=DM+Sans:wght@400;600;700&family=Caveat:wght@600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<style>
+:root{--bg:#fff8ef;--ink:#2a1f3d;--mut:#7a6d8a;--card:#fff;--pri:#ff4f8b;--sec:#6b4cff;--line:#eadff0;--sh:0 12px 30px -14px rgba(80,40,120,.35);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#150f22;--ink:#f6efff;--mut:#a99bc0;--card:#211736;--line:#35264f}}
+:root[data-theme=dark]{--bg:#150f22;--ink:#f6efff;--mut:#a99bc0;--card:#211736;--line:#35264f}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.5;overflow-x:hidden}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;margin:0;line-height:1.1}
+a{color:inherit;text-decoration:none}
+.w{max-width:1080px;margin:auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;max-width:1080px;margin:auto}
+.logo{font:800 1.5rem Fraunces,serif}.logo b{color:var(--pri)}
+nav div{display:flex;gap:14px;align-items:center;font-weight:600;font-size:.95rem}
+.btn{border:0;cursor:pointer;font:700 1rem 'DM Sans',sans-serif;padding:14px 24px;border-radius:99px;background:var(--pri);color:#fff;box-shadow:0 10px 24px -10px var(--pri);transition:transform .2s,box-shadow .2s;display:inline-block;min-height:48px}
+.btn:hover{transform:translateY(-2px) scale(1.03)}.btn:active{transform:scale(.97)}
+.btn.g{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--line)}
+.btn.s{padding:9px 16px;min-height:0;font-size:.9rem}
+.hero{display:grid;gap:30px;padding:30px 0 60px;align-items:center}
+@media(min-width:800px){.hero{grid-template-columns:1.1fr .9fr}}
+.hero h1{font-size:clamp(2.4rem,7vw,4.2rem)}.hero h1 em{color:var(--pri);font-style:italic}
+.hero p{font-size:1.15rem;color:var(--mut);max-width:30em}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.stage{position:relative;height:340px;display:grid;place-items:center;background:radial-gradient(circle,#ffe0ef,transparent 70%);border-radius:40px}
+.stage .gb{font-size:9rem;animation:wig 3s infinite}
+.stage i{position:absolute;font-style:normal;font-size:2rem;bottom:40%;animation:fl 3s infinite;opacity:0}
+section{padding:50px 0}section>h2{font-size:clamp(1.8rem,5vw,2.6rem);margin-bottom:24px;text-align:center}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.grid.t{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.card{background:var(--card);border-radius:24px;padding:20px;box-shadow:var(--sh);border:1px solid var(--line);transition:transform .25s}
+.card:hover{transform:translateY(-4px) rotate(-.6deg)}
+.oc{text-align:center;cursor:pointer;font:700 1rem 'DM Sans';color:var(--ink);border:2px solid var(--line)}
+.oc span{display:block;font-size:2.6rem;margin-bottom:6px;transition:transform .3s}.oc:hover span{transform:scale(1.3) rotate(-10deg)}
+.oc.on{border-color:var(--pri)}
+.steps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));counter-reset:n}
+.steps .card:before{counter-increment:n;content:counter(n);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--pri);color:#fff;font-weight:700;margin-bottom:10px}
+.sw{height:130px;border-radius:18px;display:grid;place-items:center;font-size:2.4rem;margin-bottom:12px;position:relative;overflow:hidden}
+.ttl2{font:800 1.3rem Fraunces}.mut{color:var(--mut)}
+.page{padding:20px 0 80px;max-width:720px;margin:auto}.page h2{font-size:2rem;margin-bottom:6px}
+.fade{animation:up .5s both}
+label{display:block;font-weight:700;margin:16px 0 6px}label small{font-weight:400;color:var(--mut)}
+input,textarea{width:100%;padding:14px 16px;border-radius:16px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:1rem}
+input:focus,textarea:focus{outline:0;border-color:var(--sec)}textarea{min-height:110px;resize:vertical}
+.prog{display:flex;gap:6px;margin:12px 0 22px}.prog i{flex:1;height:6px;border-radius:9px;background:var(--line)}.prog i.on{background:var(--pri)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:2px solid var(--line);background:var(--card);color:var(--ink);padding:9px 14px;border-radius:99px;cursor:pointer;font:600 .9rem 'DM Sans'}
+.chip.on{border-color:var(--pri);background:color-mix(in srgb,var(--pri) 12%,var(--card))}
+.dot{width:34px;height:34px;border-radius:50%;border:3px solid var(--card);box-shadow:0 0 0 2px var(--line);cursor:pointer}.dot.on{box-shadow:0 0 0 3px var(--ink)}
+.an{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.an .chip{text-align:center;border-radius:20px;padding:12px 6px}.an span{display:inline-block;font-size:2.2rem}
+.an span{animation-iteration-count:infinite!important}
+.ph{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}.ph div{position:relative}.ph img{width:84px;height:84px;object-fit:cover;border-radius:14px}
+.ph button{position:absolute;top:-6px;right:-6px;border:0;border-radius:50%;width:24px;height:24px;background:var(--pri);color:#fff;cursor:pointer}
+.nav2{display:flex;justify-content:space-between;margin-top:28px;gap:10px}
+.mo{position:fixed;inset:0;background:rgba(20,10,40,.6);display:grid;place-items:center;z-index:50;padding:20px;animation:up .3s}
+.mo>div{background:var(--card);border-radius:28px;padding:26px;max-width:380px;width:100%;text-align:center;max-height:90vh;overflow:auto}
+.toast{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:99px;z-index:200;animation:up .3s}
+.lnk{background:var(--bg);border:2px dashed var(--line);border-radius:16px;padding:12px;word-break:break-all;font-size:.9rem;margin:8px 0}
+.code{font:800 2rem Fraunces;letter-spacing:.2em;color:var(--sec)}
+.empty{text-align:center;padding:50px 20px}.empty .big2{font-size:4rem;animation:wig 2s infinite}
+.sp{width:44px;height:44px;border:5px solid var(--line);border-top-color:var(--pri);border-radius:50%;animation:spin 1s linear infinite;margin:20px auto}
+.pl{position:fixed;inset:0;z-index:100;overflow:hidden;display:flex;flex-direction:column;animation:up .5s}
+.pb{flex:1;overflow:auto;display:grid;place-items:center;padding:24px;position:relative;z-index:2;-webkit-overflow-scrolling:touch}
+.stg{max-width:560px;width:100%;text-align:center;animation:up .8s both}
+.pl .big{font-size:7rem}.pl .sm{font-size:1.4rem;font-family:Fraunces,serif;margin-bottom:20px}
+.pl .btn{background:var(--a);color:#fff;margin-top:26px}.pl .btn.g{background:transparent;color:inherit;box-shadow:inset 0 0 0 2px var(--a)}
+.ttl{font-size:clamp(2.2rem,10vw,4rem);font-weight:800}.ttl span{color:var(--a);display:block;animation:pop 1s both}
+.cd{font:800 6rem Fraunces;color:var(--a);animation:pop 1s infinite}
+.ln{opacity:0;font-size:1.25rem;margin:12px 0;animation:up .9s forwards;text-align:var(--al)}.late{opacity:0;animation:up .8s forwards}
+.gal{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:16px 0}
+.gal figure{margin:0;background:#fff;padding:8px 8px 22px;box-shadow:0 8px 20px rgba(0,0,0,.3);transform:rotate(var(--r));width:42%;animation:pop .8s both}.gal img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.gal.strip{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding:14px 4px;background:#111;border-radius:6px}.gal.strip figure{flex:0 0 70%;transform:none;padding:6px;border-radius:4px}
+.quote{background:rgba(255,255,255,.14);border-radius:20px;padding:18px;font-size:1.1rem;margin-top:16px}
+.fl{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}.fl i{position:absolute;bottom:-10%;font-style:normal;animation:fl linear infinite;opacity:0}
+.mus{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:14px;z-index:5;border:0;border-radius:50%;width:44px;height:44px;background:rgba(255,255,255,.25);font-size:1.2rem;cursor:pointer}
+.cf{position:fixed;inset:0;pointer-events:none;z-index:9999}
+.a-gift{animation:wig .4s 4}.a-balloon{animation:rise 3s forwards}.a-magic{animation:spin 3s ease-in-out}.a-door{animation:swing 3s ease-in-out;transform-origin:left}
+.a-unbox{animation:pop 3s}.a-stars{animation:tw 1s infinite}.a-cinema{animation:foc 3s}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes fl{0%{transform:translateY(0) rotate(0);opacity:0}15%{opacity:1}100%{transform:translateY(-110vh) rotate(40deg);opacity:0}}
+@keyframes wig{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg) scale(1.05)}75%{transform:rotate(8deg) scale(1.05)}}
+@keyframes pop{0%{transform:scale(.4);opacity:0}60%{transform:scale(1.15);opacity:1}100%{transform:scale(1)}}
+@keyframes rise{from{transform:translateY(120px) scale(.6)}to{transform:translateY(-30px) scale(1.2)}}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes swing{0%{transform:perspective(500px) rotateY(0)}70%,100%{transform:perspective(500px) rotateY(-80deg)}}
+@keyframes tw{50%{opacity:.3;transform:scale(1.2)}}@keyframes foc{from{filter:blur(18px);transform:scale(.6)}to{filter:none;transform:scale(1)}}
+@keyframes shk{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}.shk{animation:shk .4s}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important}}
+</style></head><body><div id="app"></div>
+<script>
+// ===== DATA =====
+const O=[['birthday','🎂','Birthday','HAPPY BIRTHDAY'],['anniversary','💐','Anniversary','HAPPY ANNIVERSARY'],['graduation','🎓','Graduation','CONGRATULATIONS'],['congrats','🏆','Congratulations','CONGRATULATIONS'],['friendship','❤️','Friendship','YOU’RE SPECIAL'],['message','💌','Special Message','THIS IS FOR YOU'],['farewell','👋','Farewell','UNTIL WE MEET AGAIN'],['wedding','💒','Wedding','YOU’RE INVITED'],['party','🎉','Party Invitation','LET’S PARTY'],['festival','🪔','Festival','HAPPY FESTIVAL'],['other','🎁','Other','A SURPRISE FOR YOU']];
+const T=[
+{id:'colorful',n:'Colorful Celebration',d:'Balloons, confetti, bright joy',e:'🎂',bg:'linear-gradient(160deg,#ffd86b,#ff8fb8 60%,#8fd3ff)',ink:'#2a1245',ac:'#ff4f8b',dc:['🎈','🎉','🎂','🎊'],f:'Fraunces'},
+{id:'magical',n:'Magical Night',d:'Stars, moon and glowing sparks',e:'🌙',bg:'radial-gradient(circle at 70% 10%,#2b2a7a,#0b1033 60%)',ink:'#f3f0ff',ac:'#ffd86b',dc:['⭐','🌙','✨'],f:'Fraunces'},
+{id:'cute',n:'Cute Party',d:'Playful stickers and fun',e:'🧸',bg:'linear-gradient(#c9f6ff,#ffe3f1)',ink:'#4a2a5e',ac:'#ff6fb1',dc:['🎈','🧸','🍭','🌈'],f:'Caveat'},
+{id:'luxury',n:'Luxury Celebration',d:'Gold, elegance, cinematic calm',e:'✦',bg:'linear-gradient(#17130a,#2b2210)',ink:'#f6e7b8',ac:'#d9b45a',dc:['✦','◆','✨'],f:'Fraunces'},
+{id:'memory',n:'Memory Celebration',d:'Photo cards and warm nostalgia',e:'📸',bg:'#fff0dc',ink:'#3b2a20',ac:'#e0703d',dc:['📸','🌷','💛'],f:'DM Sans'}];
+const FONTS={Fraunces:'Fraunces,Georgia,serif','DM Sans':"'DM Sans',sans-serif",Caveat:'Caveat,cursive'};
+const AN=[['gift','🎁','Gift Box'],['balloon','🎈','Balloon'],['magic','✨','Magical'],['door','🚪','Door'],['unbox','📦','Unboxing'],['stars','🌌','Starry Night'],['cinema','🎬','Cinematic']];
+const MU=[['none','🔇','None'],['celebration','🎉','Celebration'],['emotional','🎻','Emotional'],['magical','🪄','Magical'],['romantic','💞','Romantic'],['fun','🕺','Fun']];
+const SC={celebration:[[523,659,784,1047,784,659],.22,'triangle'],emotional:[[392,440,523,440,392,330],.5,'sine'],magical:[[659,784,988,1319,988,784],.35,'sine'],romantic:[[349,440,523,698,523,440],.45,'sine'],fun:[[523,659,523,784,659,880],.18,'square']};
+const COLS=['','#ff4f8b','#6b4cff','#2bb5a0','#ff8a3d','#3b82f6'];
+const TT=id=>T.find(t=>t.id===id)||T[0],OC=id=>O.find(o=>o[0]===id)||O[10];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sleep=ms=>new Promise(r=>setTimeout(r,ms)),uid=()=>Math.random().toString(36).slice(2,9);
+const fdate=d=>d?new Date(d).toLocaleDateString(undefined,{day:'numeric',month:'long',year:'numeric'}):'';
+const link=id=>location.href.split('#')[0]+'#/s/'+id;
+
+async function hash(t){
+  t=String(t||'').trim().toUpperCase();
+  try{
+    if(window.crypto && crypto.subtle){
+      const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));
+      return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+    }
+  }catch(e){}
+  return'p:'+t;
+}
+
+const blank=(o,t)=>({occasion:o,template:t,recipientName:'',nickname:'',senderName:'',message:'',specialMessage:'',finalMessage:'',date:new Date().toISOString().slice(0,10),photos:[],layout:'polaroid',theme:{accent:'',font:'',align:'center'},animation:'gift',music:'celebration'});
+
+function normalize(s){
+  if(!s||typeof s!=='object')return null;
+  return{
+    occasion:'birthday',template:'colorful',recipientName:'',nickname:'',senderName:'',
+    message:'',specialMessage:'',finalMessage:'',date:new Date().toISOString().slice(0,10),
+    photos:[],layout:'polaroid',theme:{accent:'',font:'',align:'center'},animation:'gift',music:'celebration',
+    ...s,
+    photos:Array.isArray(s.photos)?s.photos:[],
+    theme:{accent:'',font:'',align:'center',...(s.theme||{})},
+    animation:s.animation||'gift',
+    music:s.music||'celebration'
+  };
+}
+
+// ===== FIREBASE REALTIME DATABASE SERVICE LAYER =====
+const FB_URL = 'https://unfold-33a7c-default-rtdb.asia-southeast1.firebasedatabase.app';
+
+const Svc = {
+  k: 'unfold_v1',
+
+  _getLocal() {
+    try { return JSON.parse(localStorage.getItem(this.k)) || []; }
+    catch(e) { return []; }
+  },
+
+  _setLocal(l) {
+    try { localStorage.setItem(this.k, JSON.stringify(l)); }
+    catch(e) {}
+  },
+
+  // Save to Firebase Cloud & LocalStorage
+  async save(s) {
+    s = normalize(s);
+    // 1. Save to local storage for creator's dashboard
+    const l = this._getLocal();
+    const idx = l.findIndex(x => x.id === s.id);
+    if (idx < 0) l.unshift(s); else l[idx] = s;
+    this._setLocal(l);
+
+    // 2. Save to Firebase Realtime Database
+    try {
+      const res = await fetch(`${FB_URL}/surprises/${encodeURIComponent(s.id)}.json`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(s)
+      });
+      if (!res.ok) {
+        console.warn('Firebase save response status:', res.status);
+      }
+    } catch(err) {
+      console.warn('Firebase save network error:', err);
+    }
+    return s;
+  },
+
+  // Get from Firebase Cloud first, fallback to LocalStorage
+  async get(id) {
+    if (!id) return null;
+
+    // 1. Try fetching from Firebase Realtime Database (Cloud)
+    try {
+      const res = await fetch(`${FB_URL}/surprises/${encodeURIComponent(id)}.json`);
+      if (res.ok) {
+        const cloudData = await res.json();
+        if (cloudData && typeof cloudData === 'object' && (cloudData.recipientName || cloudData.message)) {
+          return normalize(cloudData);
+        }
+      }
+    } catch(err) {
+      console.warn('Firebase fetch failed, checking local:', err);
+    }
+
+    // 2. Check local storage if not found in Firebase or if offline
+    const local = this._getLocal().find(x => x.id === id);
+    if (local) return normalize(local);
+
+    // 3. Check demo seeds
+    const demos = await this.seed();
+    const d = demos.find(x => x.id === id);
+    return d ? normalize(d) : null;
+  },
+
+  // List all surprises for the Dashboard
+  async list() {
+    let l = this._getLocal();
+    if (!l || !l.length) {
+      l = await this.seed();
+      this._setLocal(l);
+    }
+    return l.map(normalize);
+  },
+
+  async remove(id) {
+    const l = this._getLocal().filter(s => s.id !== id);
+    this._setLocal(l);
+
+    try {
+      await fetch(`${FB_URL}/surprises/${encodeURIComponent(id)}.json`, {
+        method: 'DELETE'
+      });
+    } catch(e) {}
+  },
+
+  async verify(s, code) {
+    if (!s) return false;
+    const clean = String(code || '').trim().toUpperCase();
+
+    // If no password was configured on this surprise, unlock immediately!
+    if (!s.password && !s.passwordHash && !s.demoCode) return true;
+
+    // 1. Direct match with plain text password (case-insensitive)
+    if (s.password && String(s.password).trim().toUpperCase() === clean) return true;
+    if (s.demoCode && String(s.demoCode).trim().toUpperCase() === clean) return true;
+
+    // 2. Match with passwordHash
+    if (s.passwordHash) {
+      const h = await hash(clean);
+      if (s.passwordHash === h) return true;
+      if (s.passwordHash === clean) return true;
+      if (s.passwordHash === 'p:' + clean) return true;
+    }
+    return false;
+  },
+
+  async seed() {
+    const mk = async (o, t, x, c) => ({
+      ...blank(o, t),
+      id: 'demo-' + o,
+      createdAt: Date.now() - 864e5,
+      password: c,
+      demoCode: c,
+      passwordHash: await hash(c),
+      shareUrl: link('demo-' + o),
+      ...x
+    });
+
+    const demos = [
+      await mk('birthday','magical',{recipientName:'Aarav',nickname:'Champ',senderName:'Mom & Dad',date:'2026-10-18',animation:'stars',music:'magical',message:'Eighteen years ago our whole world changed.\nYou turned every ordinary day into an adventure.\nWe are so proud of the kind, curious human you have become.',specialMessage:'You make everyone around you feel like the main character.',finalMessage:'Your gift is waiting at home — and it is a trip to the mountains, just us. Pack your bags! 🏔️'},'AARAV18'),
+      await mk('anniversary','luxury',{recipientName:'Priya',senderName:'Rahul',date:'2026-02-14',animation:'door',music:'romantic',message:'Five years, and I still get butterflies when you walk in.\nThank you for every chai, every laugh, every quiet moment.',specialMessage:'You are my home.',finalMessage:'Dinner at 8. Wear something beautiful. I will be the one holding flowers. 💐'},'LOVE2020'),
+      await mk('congrats','colorful',{recipientName:'Meera',senderName:'Your Team',animation:'balloon',music:'celebration',message:'You worked harder than anyone and it shows.\nThis promotion is 100% earned.',specialMessage:'Your calm in chaos inspires us all.',finalMessage:'Cake in the break room at 4pm. You are the guest of honor! 🎉'},'CHAMP')
+    ];
+
+    demos.forEach(d => {
+      fetch(`${FB_URL}/surprises/${encodeURIComponent(d.id)}.json`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(d)
+      }).catch(() => {});
+    });
+
+    return demos;
+  }
+};
+
+// ===== MUSIC & CONFETTI =====
+let AC,MT;const stopM=()=>{clearInterval(MT);MT=0};
+function music(m){stopM();if(!SC[m])return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();AC.resume();const[n,t,w]=SC[m];let i=0;MT=setInterval(()=>{const o=AC.createOscillator(),g=AC.createGain(),c=AC.currentTime;o.type=w;o.frequency.value=n[i++%n.length];g.gain.setValueAtTime(.0001,c);g.gain.exponentialRampToValueAtTime(.05,c+.03);g.gain.exponentialRampToValueAtTime(.0001,c+t*1.8);o.connect(g);g.connect(AC.destination);o.start();o.stop(c+t*2)},t*1000)}catch(e){}}
+function confetti(n=90){const c=document.createElement('canvas');c.className='cf';c.width=innerWidth;c.height=innerHeight;document.body.appendChild(c);const x=c.getContext('2d'),cl=['#ff4f8b','#ffd86b','#6b4cff','#4fd1c5','#ff8a3d'];const p=Array.from({length:n},()=>({x:Math.random()*c.width,y:-20-Math.random()*c.height*.5,vx:Math.random()*4-2,vy:2+Math.random()*4,s:6+Math.random()*6,r:Math.random()*6,c:cl[Math.random()*5|0]}));let f=0;(function t(){x.clearRect(0,0,c.width,c.height);p.forEach(q=>{q.x+=q.vx;q.y+=q.vy;q.r+=.1;x.save();x.translate(q.x,q.y);x.rotate(q.r);x.fillStyle=q.c;x.fillRect(-q.s/2,-q.s/4,q.s,q.s/2);x.restore()});++f<200?requestAnimationFrame(t):c.remove()})()}
+const floaters=(dc,n=12)=>`<div class=fl>${Array.from({length:n},(_,i)=>`<i style="left:${(i*83)%100}%;font-size:${18+(i*7)%22}px;animation-duration:${6+(i*3)%7}s;animation-delay:${(i*1.3)%6}s">${dc[i%dc.length]}</i>`).join('')}</div>`;
+
+// ===== SURPRISE PLAYER =====
+function play(s,close,isPrev){
+ s=normalize(s);
+ const t=TT(s.template),th=s.theme||{},a=th.accent||t.ac,o=OC(s.occasion),nm=s.nickname||s.recipientName||'Friend',tm=[];
+ const el=document.createElement('div');el.className='pl';
+ el.style.cssText=`--a:${a};--al:${th.align||'center'};background:${t.bg};color:${t.ink};font-family:${FONTS[th.font||t.f]||FONTS['DM Sans']}`;
+ el.innerHTML=floaters(t.dc)+(s.music!=='none'?'<button class=mus data-p=mus>🔊</button>':'')+'<div class=pb></div>';
+ const st=['intro','reveal','title','msg'];
+ if((s.photos&&s.photos.length)||s.specialMessage)st.push('mem');
+ st.push('final');
+ let i=0,on=s.music!=='none';const body=el.querySelector('.pb');
+ const lines=(s.message||'You mean the world to me.').split(/\n+/);
+ const animIcon=(AN.find(x=>x[0]===s.animation)||AN[0])[1];
+
+ const V={
+ intro:()=>`<p class=sm>Someone has prepared something special for you…</p><div class="big" style="animation:wig 2s infinite">🎁</div><br><button class=btn data-p=open>Open Your Surprise 🎁</button>`,
+ reveal:()=>{[1,2].forEach(n=>tm.push(setTimeout(()=>{const c=el.querySelector('#cd');if(c)c.textContent=3-n},n*1000)));tm.push(setTimeout(()=>{const c=el.querySelector('#cd');if(c)c.textContent='✨'},3000));tm.push(setTimeout(()=>go(2),3700));
+  return`<div class="big a-${s.animation}">${animIcon}</div><div class=cd id=cd>3</div>`},
+ title:()=>`<div style="font-size:3rem">${o[1]}</div><h1 class=ttl>${esc(o[3])},<span>${esc(nm).toUpperCase()}!</span></h1><p>${fdate(s.date)}</p><button class=btn data-p=next>Continue →</button>`,
+ msg:()=>`<p class=sm>There's something I've been wanting to tell you…</p>${lines.map((l,k)=>`<p class=ln style="animation-delay:${1.5+k*1.4}s">${esc(l)}</p>`).join('')}<button class="btn late" style="animation-delay:${2+lines.length*1.4}s" data-p=next>Keep going →</button>`,
+ mem:()=>(s.photos&&s.photos.length)?`<h2>Our Memories ❤️</h2><div class="gal ${s.layout==='strip'?'strip':''}">${s.photos.map((p,k)=>`<figure style="--r:${(k%2?1:-1)*(2+k%4)}deg;animation-delay:${k*.25}s"><img src="${esc(p)}" alt="Memory ${k+1}"></figure>`).join('')}</div>${s.specialMessage?`<div class=quote>${esc(s.specialMessage)}</div>`:''}<button class=btn data-p=next>Next →</button>`
+  :`<h2>Why You're Special 💛</h2><div class=quote style="font-size:1.4rem">${esc(s.specialMessage)}</div><button class=btn data-p=next>Next →</button>`,
+ final:()=>`<p class=sm>And one last thing…</p><p class=ln style="font-size:1.5rem;animation-delay:1.2s;text-align:center">${esc(s.finalMessage||'Thank you for being exactly who you are.')}</p><p class=ln style="animation-delay:2.6s;text-align:center;font-weight:700">— ${esc(s.senderName||'Someone who loves you')} ❤️</p><div class=late style="animation-delay:3.4s"><button class="btn g" data-p=replay>↺ Replay</button> <button class=btn data-p=close>${isPrev?'Back to editing':'Make one for someone ✨'}</button></div>`};
+ 
+ function go(n){i=n;const k=st[n];body.innerHTML=`<div class=stg>${V[k]()}</div>`;body.scrollTop=0;if(k==='title')confetti();if(k==='final')tm.push(setTimeout(()=>confetti(120),600))}
+ 
+ el.addEventListener('click',e=>{const b=e.target.closest('[data-p]');if(!b)return;const p=b.dataset.p;
+  if(p==='open'){music(s.music);go(1)}else if(p==='next')go(i+1);else if(p==='replay')go(1);
+  else if(p==='mus'){on=!on;on?music(s.music):stopM();b.textContent=on?'🔊':'🔇'}
+  else if(p==='close'){tm.forEach(clearTimeout);stopM();el.remove();close&&close()}});
+ 
+ document.body.appendChild(el);go(0);
+}
+
+// ===== UI HELPERS =====
+const app=document.getElementById('app');
+function toast(m){const d=document.createElement('div');d.className='toast';d.textContent=m;document.body.appendChild(d);setTimeout(()=>d.remove(),2200)}
+function modal(h){closeM();const d=document.createElement('div');d.className='mo';d.id='mo';d.innerHTML=`<div>${h}</div>`;d.onclick=e=>{if(e.target===d)closeM()};document.body.appendChild(d)}
+const closeM=()=>document.getElementById('mo')?.remove();
+const nav=()=>`<nav><a href="#/" class=logo>Unfold<b>.</b></a><div><a href="#/dashboard">My Surprises</a><a class="btn s" href="#/create" data-a=new>Create ✨</a></div></nav>`;
+const page=h=>app.innerHTML=nav()+h;
+const loading=(m='Loading…')=>page(`<div class=empty><div class=sp></div><p class=mut>${m}</p></div>`);
+const mini=t=>`<div class=sw style="background:${t.bg};color:${t.ink}">${floaters(t.dc,6)}<span style="position:relative;font-family:${FONTS[t.f]||FONTS['DM Sans']};font-size:1.3rem;font-weight:800;text-align:center">${t.e}<br>Happy Birthday</span></div>`;
+
+// ===== VIEWS =====
+function home(){page(`<div class=w><div class=hero><div class=fade><h1>Turn Your Feelings Into an <em>Experience.</em></h1><p>Create a personalized digital surprise they'll never forget.</p><div class=row><a class=btn href="#/create" data-a=new>Create a Surprise ✨</a><a class="btn g" href="#tpl">Explore Templates</a></div></div>
+<div class=stage><div class=gb>🎁</div>${['✨','🎈','🎉','💌','⭐'].map((e,i)=>`<i style="left:${20+i*15}%;animation-delay:${i*.5}s">${e}</i>`).join('')}</div></div>
+<section><h2>How it works</h2><div class=steps>${['Choose an occasion','Personalize it','Add your memories','Lock it with a secret code','Share the surprise'].map(x=>`<div class=card><b>${x}</b></div>`).join('')}</div></section>
+<section><h2>Popular occasions</h2><div class=grid>${O.slice(0,6).map(o=>`<a href="#/create" data-a=occ data-v=${o[0]} class="card oc"><span>${o[1]}</span>${o[2]}</a>`).join('')}</div></section>
+<section id=tpl><h2>Beautiful templates</h2><div class="grid t">${T.map(t=>`<div class=card>${mini(t)}<div class=ttl2>${t.n}</div><div class=mut>${t.d}</div></div>`).join('')}</div></section>
+<section><h2>Why a digital surprise?</h2><div class=steps><div class=card><b>🎬 It's a moment</b><p class=mut>A reveal, a countdown, a story — not just a card.</p></div><div class=card><b>🔐 It's private</b><p class=mut>Only someone with the link and code opens it.</p></div><div class=card><b>📱 It fits a pocket</b><p class=mut>Made for phones. Share by link or QR.</p></div></div></section>
+<section style="text-align:center"><h2>Someone is waiting to be surprised.</h2><br><a class=btn href="#/create" data-a=new>Create a Surprise ✨</a></section></div>`)}
+
+const STEPS=['About Them','Your Message','Memories','Style','Secret Code','Experience It'];
+let W=null,LAST={};
+function wiz(){if(!W)W={step:0,d:blank('birthday','colorful')};const{step:n,d}=W;let h='';
+ if(n===0)h=`<h2>What's the occasion?</h2><p class=mut>Pick one to begin.</p><div class="grid" style="margin-top:18px">${O.map(o=>`<button class="card oc ${d.occasion===o[0]?'on':''}" data-a=occ data-v=${o[0]}><span>${o[1]}</span>${o[2]}</button>`).join('')}</div>`;
+ else if(n===1)h=`<h2>Choose a look</h2><p class=mut>Each one feels different.</p><div class="grid t" style="margin-top:18px">${T.map(t=>`<div class=card>${mini(t)}<div class=ttl2>${t.n}</div><div class=mut style="margin-bottom:12px">${t.d}</div><button class="btn s g" data-a=tprev data-v=${t.id}>Preview</button> <button class="btn s" data-a=use data-v=${t.id}>Use This Template</button></div>`).join('')}</div>`;
+ else{const k=n-2,inp=(key,l,ph='',x='')=>`<label>${l}</label><input data-k=${key} value="${esc(d[key])}" placeholder="${ph}" ${x}>`,ta=(key,l,ph)=>`<label>${l}</label><textarea data-k=${key} placeholder="${ph}">${esc(d[key])}</textarea>`;
+  const ch=(key,arr)=>arr.map(a=>`<button class="chip ${(key.split('.').reduce((o,p)=>o[p],d))===a[0]?'on':''}" data-a=set data-v="${key}|${a[0]}">${a[1]} ${a[2]}</button>`).join('');
+  h=`<div class=prog>${STEPS.map((_,i)=>`<i class="${i<=k?'on':''}"></i>`).join('')}</div><h2>${STEPS[k]}</h2>`;
+  if(k===0)h+=inp('recipientName','Their name','Aarav')+inp('nickname','Nickname <small>(optional)</small>','Champ')+inp('senderName','Your name','Mom')+`<label>Date</label><input type=date data-k=date value="${d.date}">`;
+  if(k===1)h+=ta('message','Your message <small>(one line at a time reveals nicely)</small>','There\'s something I\'ve been wanting to tell you…')+ta('specialMessage','Why they\'re special <small>(optional)</small>','You light up every room.')+ta('finalMessage','Final surprise message <small>(optional)</small>','And one last thing…');
+  if(k===2)h+=`<p class=mut>Photos are optional — the surprise looks complete without them.</p><input type=file accept="image/*" multiple data-up><div class=ph>${d.photos.map((p,i)=>`<div><img src="${esc(p)}" alt=""><button data-a=rm data-v=${i}>×</button></div>`).join('')}</div><label>Layout</label><div class=chips>${ch('layout',[['polaroid','📸','Polaroids'],['strip','🎞️','Film strip']])}</div>`;
+  if(k===3)h+=`<label>How it opens</label><div class=an>${AN.map(a=>`<button class="chip ${d.animation===a[0]?'on':''}" data-a=set data-v="animation|${a[0]}"><span class=a-${a[0]}>${a[1]}</span><br>${a[2]}</button>`).join('')}</div><label>Theme color</label><div class=chips>${COLS.map(c=>`<button class="dot ${d.theme.accent===c?'on':''}" style="background:${c||'conic-gradient(#ff4f8b,#ffd86b,#6b4cff,#ff4f8b)'}" data-a=set data-v="theme.accent|${c}" aria-label="color"></button>`).join('')}</div><label>Font</label><div class=chips>${ch('theme.font',[['','✨','Template'],['Fraunces','','Elegant'],['DM Sans','','Friendly'],['Caveat','','Handwritten']])}</div><label>Text alignment</label><div class=chips>${ch('theme.align',[['left','','Left'],['center','','Center']])}</div><label>Music</label><div class=chips>${ch('music',MU)}</div>`;
+  if(k===4)h+=`<div class=card style="margin-top:14px">🔐 <b>Protect Your Surprise</b><p class=mut>Only people with your private link and secret code can open this surprise.${W.edit?' Leave blank to keep the current code.':''}</p><input data-k=code placeholder="e.g. AARAV18" value="${esc(W.code||d.password||'')}" maxlength=24 autocapitalize=characters></div><p class=mut style="font-size:.85rem">Connected to Firebase Realtime Database: your surprise will open from anywhere!</p>`;
+  if(k===5){const t=TT(d.template);h+=`<div class=card>${mini(t)}<b>${OC(d.occasion)[1]} ${esc(d.recipientName||'Someone special')}</b><p class=mut>From ${esc(d.senderName||'you')} · ${t.n} · ${d.photos.length} photo(s)</p></div><div class=row><button class="btn g" data-a=expe>Experience It ✨</button><button class=btn data-a=make>Create My Surprise ✨</button></div>`}
+ }
+ const k=n-2;page(`<div class="page fade" id=wz>${h}${n>0&&k<5?`<div class=nav2><button class="btn g" data-a=back>← Back</button>${k>=0&&k<5?`<button class=btn data-a=next>Next →</button>`:''}</div>`:n>=7?'':''}${n===7?`<div class=nav2><button class="btn g" data-a=back>← Back</button></div>`:''}${n===1?`<div class=nav2><button class="btn g" data-a=back>← Back</button></div>`:''}</div>`)}
+
+async function done(id){
+ loading();
+ const s=await Svc.get(id);
+ if(!s)return invalid();
+ const c=LAST.id===id?LAST.code:(s.password||s.demoCode||null);
+ page(`<div class="page fade" style="text-align:center"><div style="font-size:4rem;animation:wig 2s infinite">🎉</div><h2>Your Surprise Is Ready!</h2><p class=mut>Share it whenever you're ready.</p>
+ <div class=card style="margin:20px 0;text-align:left"><b>Private Surprise Link</b><div class=lnk>${esc(s.shareUrl)}</div><b>Secret Code 🔐</b><div class=code>${c?esc(c):'• • • • • •'}</div>${c?'':'<p class=mut>Your code was shown when you created it.</p>'}</div>
+ <div class=card style="background:linear-gradient(135deg,#ffd86b,#ff8fb8);color:#2a1245;border:0"><div style="font-size:2.4rem">🎁</div><b>Someone created a special surprise for you</b><br>Open when you're ready.</div>
+ <div class=row style="justify-content:center"><button class=btn data-a=copy data-v="${s.id}">Copy Link</button><button class="btn g" data-a=share data-v="${s.id}">Share</button><button class="btn g" data-a=qr data-v="${s.id}">Create QR Code</button><button class="btn g" data-a=exp data-v="${s.id}">Experience It</button><a class="btn g" href="#/create" data-a=new>Create Another</a></div></div>`)}
+
+function invalid(){page(`<div class=empty><div class=big2>🔍</div><h2>This surprise can't be found</h2><p class=mut>The link may be incomplete, or the surprise was deleted.</p><br><a class=btn href="#/">Go home</a></div>`)}
+
+async function lock(id){
+ loading('Finding your surprise…');
+ let s=await Svc.get(id);
+ if(!s)return invalid();
+ s=normalize(s);
+
+ // If surprise has no password at all, open directly
+ if(!s.password && !s.passwordHash && !s.demoCode){
+   play(s,()=>{location.hash='#/'});
+   return;
+ }
+
+ app.innerHTML=`<div class="page fade" style="text-align:center;padding-top:12vh"><div style="font-size:5rem;animation:wig 2s infinite">🎁</div><h2>A surprise is waiting for you</h2><p class=mut>Enter the secret code you were given 🔐</p><div style="max-width:320px;margin:16px auto"><input id=pw placeholder="Secret code" autocapitalize=characters style="text-align:center"><p id=er style="color:#e0457b;min-height:1.5em;font-weight:600"></p><button class=btn id=go style="width:100%">Unlock 🔓</button></div></div>`;
+ 
+ const tryIt=async()=>{
+   const inputEl=document.getElementById('pw');
+   const v=inputEl?inputEl.value:'';
+   const ok=await Svc.verify(s,v);
+   if(ok){
+     try{
+       play(s,()=>{location.hash='#/'});
+     }catch(err){
+       console.error('Play error:',err);
+       alert('Could not open surprise: '+err.message);
+     }
+   }else{
+     const e=document.getElementById('er');
+     if(e){
+       e.textContent='Oops! That doesn\'t seem right. Try again.';
+       e.classList.remove('shk');
+       void e.offsetWidth;
+       e.classList.add('shk');
+     }
+   }
+ };
+ 
+ const goBtn=document.getElementById('go');
+ if(goBtn)goBtn.onclick=tryIt;
+ const pwInput=document.getElementById('pw');
+ if(pwInput)pwInput.onkeydown=e=>e.key==='Enter'&&tryIt();
+}
+
+async function dash(){
+ loading('Gathering your surprises…');
+ const l=await Svc.list();
+ page(`<div class="w page" style="max-width:1080px"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px"><h2>My Surprises</h2><a class=btn href="#/create" data-a=new>+ Create New Surprise</a></div>
+ ${l.length?`<div class="grid t" style="margin-top:20px">${l.map(s=>{const t=TT(s.template);return`<div class="card fade">${mini(t)}<div class=ttl2>${OC(s.occasion)[1]} ${esc(s.recipientName)}</div><div class=mut>${OC(s.occasion)[2]} · ${t.n}<br>${new Date(s.createdAt).toLocaleDateString()}${(s.password||s.demoCode)?`<br>Code: <b>${s.password||s.demoCode}</b>`:''}</div><div class=row style="margin-top:12px"><button class="btn s" data-a=exp data-v="${s.id}">Preview</button><button class="btn s g" data-a=copy data-v="${s.id}">Copy link</button><button class="btn s g" data-a=share data-v="${s.id}">Share</button><button class="btn s g" data-a=edit data-v="${s.id}">Edit</button><button class="btn s g" data-a=del data-v="${s.id}">Delete</button></div></div>`}).join('')}</div>`
+ :`<div class=empty><div class=big2>🎁</div><h3>No surprises yet</h3><p class=mut>Make someone's day.</p><br><a class=btn href="#/create" data-a=new>Create a Surprise ✨</a></div>`}</div>`);
+}
+
+// ===== ACTIONS =====
+const A={
+ new(){W=null},
+ occ(v){if(!W)W={step:0,d:blank('birthday','colorful')};W.d.occasion=v;W.step=1;location.hash==='#/create'?wiz():location.hash='#/create'},
+ tprev(v){const t=TT(v),o=OC(W.d.occasion);modal(`<div class=sw style="height:220px;background:${t.bg};color:${t.ink}">${floaters(t.dc,8)}<div style="position:relative;font:800 1.6rem ${FONTS[t.f]}">${o[3]},<br><span style="color:${t.ac}">AARAV!</span></div></div><b>${t.n}</b><p class=mut>${t.d}</p><button class=btn data-a=use data-v=${v}>Use This Template</button>`)},
+ use(v){closeM();W.d.template=v;W.step=2;wiz()},
+ set(v){const[k,val]=v.split('|');const p=k.split('.'),l=p.pop();p.reduce((o,x)=>o[x],W.d)[l]=val;wiz()},
+ rm(v){W.d.photos.splice(+v,1);wiz()},
+ back(){W.step=Math.max(0,W.step-1);wiz()},
+ next(){const n=W.step;if(n===2&&!W.d.recipientName.trim())return toast('Who is this surprise for? 💛');
+  if(n===6&&!W.code&&!W.d.password&&!W.edit)return toast('Choose a secret code (4+ characters) 🔐');
+  if(n===6&&W.code&&W.code.trim().length<4)return toast('Make it at least 4 characters 🔐');
+  W.step++;wiz()},
+ expe(){if(!W.d.recipientName.trim())return toast('Add their name first 💛');play({...W.d},()=>{},true)},
+ async make(){
+  const d=W.d;
+  if(!d.recipientName.trim())return toast('Add their name first 💛');
+  const code=String(W.code||d.password||'').trim().toUpperCase();
+  if(!code&&!W.edit)return toast('Choose a secret code 🔐');
+  page(`<div class=empty><div class=big2>🎁</div><h3>Wrapping your surprise…</h3><div class=sp></div></div>`);
+  await sleep(1400);
+
+  const s={
+    ...d,
+    id:d.id||uid(),
+    createdAt:d.createdAt||Date.now(),
+    photos:Array.isArray(d.photos)?d.photos:[]
+  };
+
+  s.shareUrl=link(s.id);
+  if(code){
+    s.password=code;
+    s.passwordHash=await hash(code);
+  }
+
+  try{
+    await Svc.save(s);
+  }catch(e){
+    console.error(e);
+    toast('Could not save surprise. Please try again.');
+    W.step=4;return wiz();
+  }
+
+  LAST={id:s.id,code:s.password||null};
+  W=null;
+  confetti();
+  location.hash='#/done/'+s.id;
+ },
+ async copy(v){const s=await Svc.get(v);try{await navigator.clipboard.writeText(s.shareUrl);toast('Link copied 🎁')}catch(e){modal(`<b>Copy this link</b><div class=lnk>${esc(s.shareUrl)}</div>`)}},
+ async share(v){const s=await Svc.get(v);const m={title:'A surprise for you 🎁',text:'I made something special for you 🎁\nOpen this when you\'re ready.',url:s.shareUrl};
+  if(navigator.share)try{await navigator.share(m)}catch(e){}else A.copy(v)},
+ async qr(v){const s=await Svc.get(v);let q='';try{const c=qrcode(0,'M');c.addData(s.shareUrl);c.make();q=c.createSvgTag(6,0)}catch(e){q='<p class=mut>QR library unavailable offline.</p>'}
+  modal(`<h3>Scan to open your surprise 🎁</h3><div style="margin:16px auto;background:#fff;padding:12px;border-radius:16px;display:inline-block">${q}</div><p class=mut>Print it on cards, gift boxes or flowers. They'll still need the secret code.</p><button class=btn data-a=closeM>Done</button>`)},
+ closeM,
+ async exp(v){play(await Svc.get(v),()=>{},true)},
+ async edit(v){const s=await Svc.get(v);W={step:2,edit:true,code:s.password||'',d:JSON.parse(JSON.stringify(s))};location.hash='#/create'},
+ del(v){modal(`<h3>Delete this surprise?</h3><p class=mut>This can't be undone.</p><div class=row style="justify-content:center"><button class="btn g" data-a=closeM>Keep it</button><button class=btn data-a=del2 data-v=${v}>Delete</button></div>`)},
+ async del2(v){await Svc.remove(v);closeM();dash();toast('Deleted')}
+};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&A[b.dataset.a]){if(b.tagName==='A'&&b.dataset.a==='new'||b.dataset.a==='occ'&&b.tagName==='A'){A[b.dataset.a](b.dataset.v);return}if(b.tagName==='A')return;A[b.dataset.a](b.dataset.v)}});
+document.addEventListener('input',e=>{const k=e.target.dataset?.k;if(k&&W){k==='code'?W.code=e.target.value:W.d[k]=e.target.value}});
+document.addEventListener('change',async e=>{if(!e.target.matches('[data-up]')||!W)return;
+ for(const f of[...e.target.files].slice(0,8-W.d.photos.length)){try{W.d.photos.push(await shrink(f))}catch(x){toast('Could not read that photo')}}wiz()});
+function shrink(f){return new Promise((res,rej)=>{const r=new FileReader();r.onerror=rej;r.onload=()=>{const im=new Image();im.onerror=rej;im.onload=()=>{const k=Math.min(1,560/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.7))};im.src=r.result};r.readAsDataURL(f)})}
+
+// ===== ROUTER =====
+function route(){const r=location.hash.replace('#/','').split('/');window.scrollTo(0,0);
+ try{if(r[0]==='create')wiz();else if(r[0]==='dashboard')dash();else if(r[0]==='s')lock(r[1]);else if(r[0]==='done')done(r[1]);else home()}
+ catch(e){console.error(e);page(`<div class=empty><div class=big2>🙈</div><h3>Something went sideways</h3><a class=btn href="#/">Back home</a></div>`)}}
+addEventListener('hashchange',route);route();
+</script></body></html>
